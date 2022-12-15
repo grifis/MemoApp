@@ -9,6 +9,6 @@ import MemoSignUpScreen from './src/screens/SignUpScreen';
 
 export default function App() {
   return (
-    <MemoSignUpScreen />
+    <MemoListScreen />
   );
 }
