@@ -31,9 +31,7 @@ export default function LogInScreen(props) {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        const { user } = userCredential;
-        console.log(user.uid);
+      .then(() => {
         navigation.reset({
           index: 0,
           routes: [{ name: 'MemoList' }],
@@ -75,7 +73,12 @@ export default function LogInScreen(props) {
           secureTextEntry
           textContentType='password'
         />
-        <Button label='submit' onPress={handlePress} />
+        <Button
+          label='submit'
+          onPress={() => {
+            handlePress();
+          }}
+        />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Not registerd?</Text>
           <TouchableOpacity

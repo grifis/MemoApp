@@ -46,7 +46,12 @@ export default function MemoEditScreen(props) {
           }}
         />
       </View>
-      <CircleButton name='check' onPress={handlePress} />
+      <CircleButton
+        name='check'
+        onPress={() => {
+          handlePress();
+        }}
+      />
     </KeyboardAvoidingView>
   );
 }
