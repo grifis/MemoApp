@@ -3,11 +3,35 @@ import { View, Text, StyleSheet, TouchableOpacity, Alert, FlatList } from 'react
 import { Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { shape, string, instanceOf, arrayOf } from 'prop-types';
+import firebase from 'firebase';
 import { dateToString } from '../utils';
 
 export default function MemoList(props) {
   const { memos } = props;
   const navigation = useNavigation();
+
+  function deleteMemo(id) {
+    const { currentUser } = firebase.auth();
+    if (currentUser) {
+      const db = firebase.firestore();
+      const ref = db.collection(`users/${currentUser.uid}/memos`).doc(id);
+      Alert.alert('メモを削除します', 'よろしいですか？', [
+        {
+          text: 'キャンセル',
+          onPress: () => {},
+        },
+        {
+          text: '削除する',
+          style: 'destructive',
+          onPress: () => {
+            ref.delete().catch(() => {
+              Alert.alert('削除に失敗しました');
+            });
+          },
+        },
+      ]);
+    }
+  }
 
   function renderItem({ item }) {
     return (
@@ -26,7 +50,7 @@ export default function MemoList(props) {
         <TouchableOpacity
           style={styles.memoDelete}
           onPress={() => {
-            Alert.alert('Are you sure?');
+            deleteMemo(item.id);
           }}
         >
           <Entypo name='cross' size={16} color='black' />
