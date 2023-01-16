@@ -15,16 +15,18 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": false,
-      "bandleIdentifier": "jp.grifis.memoapp",
+      "bundleIdentifier": "jp.grifis.memoapp",
       "buildNumber": "1.0.0"
     },
     "android": {
       "package": "jp.grifis.memoapp",
       "versionCode": 1,
-      "permissions":[],
+      "permissions": [],
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon_adaptive_foreground.png",
         "backgroundImage": "./assets/icon_adaptive_background.png"
@@ -32,6 +34,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "853c6fad-7512-489f-a32f-ea2b714a148a"
+      }
     }
   }
 }
